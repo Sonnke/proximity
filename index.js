@@ -1,16 +1,7 @@
-const app = require('./server/app');
-const mysql = require('mysql');
-const util = require('util');
+const server = require('./server/app');
 const Proximity = require('./server/models/index');
-require('dotenv').config();
+const db = require("./server/config/connection");
 
-//configure and connect to database
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-});
 
 //make a connection 
 db.connect(function(err){
@@ -19,18 +10,12 @@ db.connect(function(err){
     //create tables
     new Proximity(db);
     
-
 });
 
-//wrap into a promise
-db.query = util.promisify(db.query).bind(db);
-
-//expose database to global
-global.db = db;
-
-
-app.listen(8080,()=>{
-    console.log("Listening to 8080");
+global.io.on('connection',function(soc){
+    console.log('Socket.IO is ready');
 });
+
+server.listen(8080,()=>{console.log("Listening to 8080");});
 
 //module.exports = db;

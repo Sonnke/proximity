@@ -2,12 +2,20 @@ const fs = require('fs');
 const parse = require("csv-parse");
 const  express = require("express");
 const routes = require('./router/router');
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
+
 
 const bodyParser = require('body-parser');
 const app = express();
 
-app.use(cors())
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
+app.use(cors());
+app.use(fileUpload({
+    useTempFiles:true
+}));
 app.use(bodyParser.json());
 
 app.use('/uploads/', express.static('uploads'))
@@ -19,4 +27,6 @@ const webpack = require('webpack');
 const webpackConfig = require('../webpack.config.js');
 app.use(webpackMiddleware(webpack(webpackConfig)));
 
-module.exports = app;
+global.io = io;
+
+module.exports = server;

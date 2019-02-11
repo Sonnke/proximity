@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Socket IO</title>
+    </head>
+    <body>
+    <h1>Hye</h1>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+    <script>
+        var socket = io.connect('http://localhost:8080');
+        socket.on('file-upload-stats', function (data) {
+          console.log(data);
+          //socket.emit('my other event', { my: 'data' });
+        });
+      </script>
+    </body>
+</html>

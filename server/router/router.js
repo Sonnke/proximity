@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const Models = require('../models/models');
-//const db = require('../../index');
+const Controller = require('../controller/ProcessData');
 
-const model = new Models();
 //Home or Dashbord
 router.get('/',(req,res)=>{
     res.send("Welcome Home");
@@ -10,21 +9,24 @@ router.get('/',(req,res)=>{
 
 //Let's begin the api
 router.get('/api',(req,res)=>{
+
+    global.io.emit('file-upload-stats',{ hello: 'world' });
     res.json({Welcome:"MOFO"})
 });
 
+//file upload
+router.post('/api/upload',(req,res)=>{
+    if (Object.keys(req.files).length == 0){
+        return res.status(400).send('No files were uploaded.');
+    }
 
-//Add to raw data table
-router.get('/api/raw/add', async (req,res,next)=>{
+    const file = req.files.csv.tempFilePath;
 
-    const raw = [["D3:G3:W2:","2019/02/08",654],["K8:L2:X5:","2019/02/08",325]];
-    const result = await model.addRowData(raw);
-    console.log(result);
-    res.send("Somthing happened");
+    const Api = new Controller();
+    Api.UploadFile(file);
+
+    res.json({Welcome:"MOFO"})
 });
-
-
-
 
 
 module.exports = router;
