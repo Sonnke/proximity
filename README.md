@@ -15,7 +15,7 @@ Run "npm run dev" and your database tables will be created automatically
 # APIs
 <ul>
 <li>POST /api/raw/upload - upload your csv file</li>
-POST /api/raw/add - add single row</li
+<li>POST /api/raw/add - add single row</li>
 
 BY DATE
 <ul>
