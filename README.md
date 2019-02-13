@@ -2,7 +2,7 @@
 
 # Installations:
 
-clone the project and run npm install
+clone the project and run <strong>npm install</strong>
 
 create a .env file for your database connection as follows:
 DB_NAME=your database name
@@ -10,7 +10,7 @@ DB_HOST=yourhost
 DB_USER=youruser
 DB_PASSWORD=yourpassword
 
-Run "npm run dev" and your database tables will be created automatically
+Run <strong>npm run dev</strong> and your database tables will be created automatically
 
 # APIs
 <ul>
