@@ -13,6 +13,7 @@ const Mac = new MacToVendor();
 
 
 
+
 //Home or Dashbord
 router.get('/',(req,res)=>{
     res.send("Welcome Home");
@@ -34,8 +35,22 @@ router.post('/api/raw/upload',(req,res)=>{
     const file = req.files.csv.tempFilePath;
     IndexCtr.UploadFile(file);
 
-    res.json({Welcome:"MOFO"})
+    res.json({Please:"wait...."})
 });
+
+//Realtime 
+router.post('/api/raw/add',async (req,res)=>{
+    const mac = req.body.mac_address;
+    const date = req.body.date;
+    const duration = req.body.minutes;
+
+    rez = await IndexCtr.Add(mac,date,duration);
+
+    res.json(rez);
+})
+
+
+
 
 //get data by date
 router.post('/api/raw/bydate/',async (req,res)=>{

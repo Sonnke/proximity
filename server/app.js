@@ -12,6 +12,7 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
+app.use(express.static('client'));
 app.use(cors());
 app.use(fileUpload({
     useTempFiles:true
