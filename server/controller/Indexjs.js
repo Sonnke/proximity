@@ -38,6 +38,28 @@ class Indexjs{
 
     }
 
+    async GetPie(){
+        const Model = new Models();
+
+        const raw =  await Model.countRaw();
+        const processed = await Model.countProcessed();
+
+        return {raw_data: raw,processed:processed}
+    }
+
+
+    //Tables
+
+    async GetRaw(limit){
+        const Model = new Models();
+        return await Model.getRaw(limit);
+    }
+
+    async GetProcessed(limit){
+        const Model = new Models();
+        return await Model.getPro(limit);
+    }
+
 }
 
 

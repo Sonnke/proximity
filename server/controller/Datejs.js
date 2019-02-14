@@ -2,9 +2,9 @@ const Models = require('../models/models');
 
 class Datejs{
     //Dates
-    async GetByDate(table,date){
+    async GetByDate(table,date,limit){
         const data = new Models();
-        return await data.getByDate(table,date); 
+        return await data.getByDate(table,date,limit); 
     }
 
     async GetDateByRange(table,from,to){

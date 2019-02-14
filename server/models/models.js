@@ -31,8 +31,8 @@ class Models{
 
 
     //get by date
-    async getByDate(table,date){
-        const sql = "SELECT device_mac,DATE_FORMAT(date, '%Y-%m-%d') as date, time_in_venue FROM "+table+" WHERE date="+mysql.escape(date);
+    async getByDate(table,date,limit){
+        const sql = "SELECT device_mac,DATE_FORMAT(date, '%Y-%m-%d') as date, time_in_venue FROM "+table+" WHERE date="+mysql.escape(date)+" LIMIT "+limit;
         try{
             return await db.query(sql);
         }catch(err){
@@ -127,6 +127,49 @@ class Models{
         try{
             return await db.query(sql);
         }catch(err){
+            return err;
+        }
+    }
+
+
+    //GRAPHS DATA
+
+    async countRaw(){
+        const sql = "SELECT COUNT(raw_data_id) as total FROM raw_data";
+        try{
+            return await db.query(sql);
+        }catch(err){
+            return err;
+        }
+    }
+
+    async countProcessed(){
+        const sql ="SELECT COUNT(processed_id) as total FROM processed";
+        try{
+            return await db.query(sql);
+        }catch(err){
+            return err;
+        }
+    }
+
+    //Get Dtata
+    async getRaw(limit){
+        const sql = "SELECT * FROM raw_data LIMIT "+limit;
+        try{
+            return await db.query(sql);
+        }catch(err){
+            console.log(err);
+            return err;
+        }
+    }
+
+    //processed
+    async getPro(limit){
+        const sql = "SELECT raw_data.device_mac,raw_data.date,raw_data.time_in_venue,processed.vendor FROM raw_data JOIN processed ON raw_data.raw_data_id = processed.raw_data_id LIMIT "+limit;
+        try{
+            return await db.query(sql);
+        }catch(err){
+            console.log(err);
             return err;
         }
     }

@@ -14,28 +14,28 @@ Run <strong>npm run dev</strong> and your database tables will be created automa
 
 # APIs
 <ul>
-<li>POST /api/raw/upload - upload your csv file</li>
-<li>POST /api/raw/add - add single row</li>
+<li>POST /api/raw/upload - upload your csv file (arguments :csv)</li>
+<li>POST /api/raw/add - add single row (arguments: <strong>{mac_address, date,minutes}</strong>)</li>
 
-BY DATE
+<h2>BY DATE</h2>
 <ul>
 
-<li>POST /api/raw/bydate - return data by date</li>
-<li>POST /api/raw/date/between - return data based on date range</li>
-<li>POST /api/raw/date/before - return data that's less than a provided date</li>
-<li>POST /api/raw/date/after - return data tha's greater than a provided date</li>
+<li><strong>GET /api/raw/bydate/:date/:limit </strong>- return data by date</li>
+<li><strong>GET /api/raw/date/between/:from/:to </strong>- return data based on date range</li>
+<li><strong>GET /api/raw/date/before/:before</strong> - return data that's less than a provided date</li>
+<li><strong>GET /api/raw/date/after/:after</strong> - return data tha's greater than a provided date</li>
 </ul>
-BY TIME
+<h2>BY TIME</h2>
 <ul>
-<li>POST /api/raw/bytime - return date by time</li>
-<li>POST /api/raw/time/before - return data less than a provided minutes</li>
-<li>POST /api/raw/time/after - return data greater than provided minutes</li>
-<li>POST /api/raw/time/between - data from a provided range of minutes</li>
+<li><strong>GET /api/raw/bytime/:time</strong>- return date by time</li>
+<li><strong>GET /api/raw/time/before/:before</strong> - return data less than a provided minutes</li>
+<li><strong>GET /api/raw/time/after/:after </strong>- return data greater than provided minutes</li>
+<li><strong>GET /api/raw/time/between/:from/:to </strong>- data from a provided range of minutes</li>
 </ul>
-By VENDOR
+<h2>By VENDOR</h2>
 
-POST /api/raw/byvendor - get data by mac address vendor
+<strong>GET /api/raw/byvendor/:vendor</strong> - get data by mac address vendor
 <br>
-PROCESS RAW DATA
-<br>
-GET /api/raw/process/data  - Get Vendor or manufactor by mac address and save to processed table  
+<h2>PROCESS RAW DATA</h2>
+<br><br>
+<strong>GET /api/raw/process/data</strong>  - Get Vendor or manufacture by mac address and save to processed table  

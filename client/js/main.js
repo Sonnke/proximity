@@ -689,7 +689,16 @@
     //Sales chart
     var ctx = document.getElementById("sales-chart");
     if (ctx) {
-      ctx.height = 150;
+
+      $.ajax({
+        method: "GET",
+        url: "/api/raw/bydate/2018-01-01",
+      })
+        .done(function(data) {
+          console.log(data);
+        });
+
+      ctx.height = 120;
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {

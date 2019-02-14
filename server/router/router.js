@@ -20,10 +20,10 @@ router.get('/',(req,res)=>{
 });
 
 //Let's begin the api
-router.get('/api',async (req,res)=>{
+router.get('/api/process/data',async (req,res)=>{
 
     await Mac.SaveToDb()
-    res.json({Very:"Busy"})
+    res.json("Please check your terminal.....")
 });
 
 //file upload
@@ -53,32 +53,33 @@ router.post('/api/raw/add',async (req,res)=>{
 
 
 //get data by date
-router.post('/api/raw/bydate/',async (req,res)=>{
-    const date = req.body.date;
+router.get('/api/raw/bydate/:date/:limit',async (req,res)=>{
+    const date = req.params.date;
+    const limit = req.params.limit;
     const table = "raw_data";
-    const info = await DatejsCtr.GetByDate(table,date);
+    const info = await DatejsCtr.GetByDate(table,date,limit);
     res.json(info);
 });
 
-router.post('/api/raw/date/between',async (req,res)=>{
-    const from  = req.body.from;
-    const to = req.body.to;
+router.get('/api/raw/date/between/:from/:to',async (req,res)=>{
+    const from  = req.params.from;
+    const to = req.params.to;
     const table = 'raw_data';
 
     const info = await DatejsCtr.GetDateByRange(table,from,to);
     res.json(info);
 });
 
-router.post('/api/raw/date/before',async (req,res)=>{
-    const before  = req.body.before;
+router.get('/api/raw/date/before/:before',async (req,res)=>{
+    const before  = req.params.before;
     const table = 'raw_data';
 
     const info = await DatejsCtr.GetDateBefore(table,before);
     res.json(info);
 });
 
-router.post('/api/raw/date/after',async (req,res)=>{
-    const after  = req.body.after;
+router.get('/api/raw/date/after/:after',async (req,res)=>{
+    const after  = req.params.after;
     const table = 'raw_data';
 
     const info = await DatejsCtr.GetDateAfter(table,after);
@@ -86,42 +87,69 @@ router.post('/api/raw/date/after',async (req,res)=>{
 });
 
 //TIME
-router.post('/api/raw/bytime',async (req,res)=>{
-    const time = req.body.time;
+router.get('/api/raw/bytime/:time',async (req,res)=>{
+    const time = req.params.time;
     const table = "raw_data";
     const info = await TimeCtr.GetByTime(table,time);
     res.json(info);
 });
 
-router.post('/api/raw/time/between',async (req,res)=>{
-    const from = req.body.from;
-    const to = req.body.to;
+router.get('/api/raw/time/between/:from/:to',async (req,res)=>{
+    const from = req.params.from;
+    const to = req.params.to;
     const table = "raw_data";
     const info = await TimeCtr.GetTimeBetween(table,from,to);
     res.json(info);
 });
 
-router.post('/api/raw/time/before',async (req,res)=>{
-    const before = req.body.before;
+router.get('/api/raw/time/before/:before',async (req,res)=>{
+    const before = req.params.before;
     const table = "raw_data";
     const info = await TimeCtr.GetTimeBefore(table,before);
     res.json(info);
 });
 
-router.post('/api/raw/time/after',async (req,res)=>{
-    const after = req.body.after;
+router.get('/api/raw/time/after/:after',async (req,res)=>{
+    const after = req.params.after;
     const table = "raw_data";
     const info = await TimeCtr.GetTimeBefore(table,after);
     res.json(info);
 });
 
 //Get Data bY vendor
-router.post('/api/raw/byvendor/',async(req, res)=>{
-    const vendor = req.body.vendor;
+router.get('/api/raw/byvendor/:vendor',async(req, res)=>{
+    const vendor = req.params.vendor;
     const table = "raw_data";
     const info = await Ctr.GetByVendor(table,vendor);
     res.json(info);
 });
+
+
+
+//GRAPHS AND TABLES
+
+//get dashboard pie data
+router.get('/api/pie/',async (req,res)=>{
+    const info = await IndexCtr.GetPie();
+    res.json(info);
+});
+
+
+
+//get processed data
+router.get('/api/processed/:limit',async (req,res)=>{
+    const limit = req.params.limit;
+    const info = await IndexCtr.GetProcessed(limit);
+    res.json(info);
+});
+
+//Get Raw table
+router.get('/api/raw/:limit',async (req,res)=>{
+    const limit = req.params.limit;
+    const info = await IndexCtr.GetRaw(limit);
+    res.json(info);
+});
+
 
 
 module.exports = router;

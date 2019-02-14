@@ -50,6 +50,8 @@ class MacToVendor{
                 if(clean[i]){
                     const vendor = await this_.GetVendorByMac(clean[i].device_mac);
 
+                    timeModel.addProcessedData([[vendor,clean[i].raw_data_id]]);
+
                     console.log(vendor);
                 }
               if (--i) {         
