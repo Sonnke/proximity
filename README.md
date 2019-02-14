@@ -5,11 +5,12 @@
 clone the project and run <strong>npm install</strong>
 
 create a .env file for your database connection as follows:
-DB_NAME=your database name
-DB_HOST=yourhost
-DB_USER=youruser
-DB_PASSWORD=yourpassword
-
+<ol>
+<li>DB_NAME=your database name</li>
+<li>DB_HOST=yourhost</li>
+<li>DB_USER=youruser</li>
+<li>DB_PASSWORD=yourpassword</li>
+</ol>
 Run <strong>npm run dev</strong> and your database tables will be created automatically
 
 # APIs
