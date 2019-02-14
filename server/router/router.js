@@ -16,7 +16,7 @@ const Mac = new MacToVendor();
 
 //Home or Dashbord
 router.get('/',(req,res)=>{
-    res.send("Welcome Home");
+    res.sendFile('index.html');
 });
 
 //Let's begin the api
