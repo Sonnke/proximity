@@ -40,18 +40,18 @@ Run <strong>npm run dev</strong> and your database tables will be created automa
 <strong>GET /api/raw/byvendor/:vendor</strong> - get data by vendor or manufacture <br>
 <br>
 
-
-<code>
+```javascript
 const Mac = new MacToVendor()
 
 Mac.GetVendorByMac("90:8D:78:10:CC:25").then((vendor)=>{
     console.log(vendor)
 })
-</code><br>OR<br>
-<code>
-const Mac = new MacToVendor()
+```
+<br>OR<br>
+```javascript
+const Mac = new MacToVendor() 
 const vendor = await Mac.GetVendorByMac("90:8D:78:10:CC:25")
-</code>
+```
 
 <br>
 <h2>PROCESS RAW DATA</h2>
