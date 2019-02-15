@@ -38,6 +38,11 @@ Run <strong>npm run dev</strong> and your database tables will be created automa
 <h2>By VENDOR</h2>
 
 <strong>GET /api/raw/byvendor/:vendor</strong> - get data by vendor or manufacture <br>
+
+<h2>PROCESS RAW DATA</h2>
+<br><br>
+<strong>GET /api/raw/process/data</strong>  - Get Vendor or manufacture by mac address and save to processed table <br>
+
 <br>
 
 ```javascript
@@ -54,9 +59,5 @@ const vendor = await Mac.GetVendorByMac("90:8D:78:10:CC:25")
 ```
 
 <br>
-<h2>PROCESS RAW DATA</h2>
-<br><br>
-<strong>GET /api/raw/process/data</strong>  - Get Vendor or manufacture by mac address and save to processed table <br>
-
 To see the process, check your terminal.
 
