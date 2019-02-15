@@ -29,7 +29,8 @@ class MacToVendor{
                 }
     
             })
-
+            
+            //parse html response and extract text
             return parse(res.data).querySelector('ul').lastChild.lastChild.innerHTML;
 
             //console.log(vendor);
@@ -50,7 +51,8 @@ class MacToVendor{
                 if(clean[i]){
                     const vendor = await this_.GetVendorByMac(clean[i].device_mac);
 
-                    timeModel.addProcessedData([[vendor,clean[i].raw_data_id]]);
+                    //Add processed data to the table vendor
+                    await timeModel.addProcessedData([[vendor,clean[i].raw_data_id]]);
 
                     console.log(vendor);
                 }
@@ -59,6 +61,16 @@ class MacToVendor{
               }
             },10);
           })(clean.length);
+    }
+
+
+
+
+
+    //Get data by vendor
+    async GetByVendor(table,vendor){
+        const model = new Models()
+        return await model.getByVendor(table,vendor);
     }
 
 }

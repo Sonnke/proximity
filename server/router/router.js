@@ -119,8 +119,8 @@ router.get('/api/raw/time/after/:after',async (req,res)=>{
 //Get Data bY vendor
 router.get('/api/raw/byvendor/:vendor',async(req, res)=>{
     const vendor = req.params.vendor;
-    const table = "raw_data";
-    const info = await Ctr.GetByVendor(table,vendor);
+    const table = "processed";
+    const info = await Mac.GetByVendor(table,vendor);
     res.json(info);
 });
 

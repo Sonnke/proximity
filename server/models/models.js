@@ -121,8 +121,8 @@ class Models{
     }
 
     //get by vendor
-    async getByVendor(vendor){
-        const sql = "SELECT * FROM raw_data WHERE vendor LIKE "+mysql.escape(vendor);
+    async getByVendor(table,vendor){
+        const sql = "SELECT * FROM "+table+" WHERE vendor LIKE '%"+vendor+"%'";
 
         try{
             return await db.query(sql);
