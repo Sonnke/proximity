@@ -2,7 +2,7 @@
 
 # Installations:
 
-clone the project and run <strong>npm install</strong><br>
+clone the project and run ``` npm install ```<br>
 
 Your dashboard is located at: <strong>localhost:8080</strong>
 
