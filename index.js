@@ -16,6 +16,8 @@ global.io.on('connection',function(soc){
     console.log('Socket.IO is ready');
 });
 
-server.listen(8080,()=>{console.log("Listening to 8080");});
+const port = 8080;
+
+server.listen(port,()=>{console.log("Listening to ",port);});
 
 //module.exports = db;
