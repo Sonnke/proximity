@@ -5,7 +5,6 @@ const routes = require('./router/router');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 
-
 const bodyParser = require('body-parser');
 const app = express();
 
